@@ -9,15 +9,15 @@ def evaluate(classes, testloader, device, model):
     correct = 0
     total = 0
     
-    # again no gradients needed
+
     with torch.no_grad():
         for images, labels in testloader:
             images, labels = images.to(device), labels.to(device)
             outputs = model(images)
-            # ??? batch_size = imgs.shape[0]
-            # ???outputs = model_2(imgs.view(batch_size, -1))
+            # batch_size = imgs.shape[0]
+            #outputs = model_2(imgs.view(batch_size, -1))
             _, predictions = torch.max(outputs, 1)
-            # collect the correct predictions for each class
+
             for label, prediction in zip(labels, predictions):
                 if label == prediction:
                     correct_pred[classes[label]] += 1

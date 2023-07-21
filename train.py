@@ -23,12 +23,6 @@ def main(args):
     
     classes = ('plane', 'car', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck')
     
-    #acc_log = []
-    #loss_log = []
-    #lr_log = []
-    #epoch_log = []
-    #classes_log = []
-    
     dict_log = dict()
     dict_log["epoch"] = []
     dict_log["loss"] = []
@@ -137,7 +131,7 @@ def main(args):
             
             )
     """
-    #best_acc = 0
+
     
     for epoch in range(n_epochs): 
         total_epochs += 1
@@ -172,13 +166,9 @@ def main(args):
         if epoch % 1 == 0:
             
             acc, class_acc = eval.evaluate(classes, testloader, device, model)
-            #acc_loss_lr.append([epoch+total_epochs, acc, running_loss, scheduler.get_last_lr()])
             #wandb.log({"accuracy": acc, "loss": running_loss})        
             print(acc)
-            #acc_log.append(acc)
-            #loss_log.append(running_loss)
-            #lr_log.append(scheduler.get_last_lr()[0])
-            #epoch_log.append(total_epochs)
+
             
             dict_log["acc"].append(acc)
             dict_log["loss"].append(running_loss)
@@ -219,13 +209,10 @@ def main(args):
             , savename)   
             print("checkpoint saved as ", savename)
             
-            #acc_loss_lr =np.asarray(acc_loss_lr)
-            #np.savetxt(savename +".csv", acc_loss_lr, delimiter=",")
             if args.load:
                 df_savename = "epoch" +str( initial_epochs+ n_epochs) + "from epoch" + str(initial_epochs) 
             else:
                 df_savename = "epoch" +str( initial_epochs + n_epochs) 
-            #df = pd.DataFrame({"acc": acc_log, "loss": loss_log, "lr":lr_log, "epoch": epoch_log })
             df = pd.DataFrame.from_dict( dict_log)
             df.to_csv(os.path.join(savedir_path, df_savename + ".csv"))
         
