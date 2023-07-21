@@ -1,0 +1,7 @@
+checkpoints
+configs
+data
+wandb
+**__pycache__**
+.ipynb_checkpoints
+.spyproject

@@ -1,0 +1,17 @@
+{
+"name": "example_model",
+"version": 0,
+"model": "simple_example",
+"num_workers": 12,
+"batch_size": 32,
+"n_epochs": 3,
+
+"loss_fn": "cross_entropy",
+"optimizer_name": "SGD",
+"parameters":
+    {
+    "learning_rate": 1e-2,
+    "momentum": 0.9,
+    "weight_decay": 5e-4
+    }
+}
