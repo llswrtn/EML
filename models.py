@@ -19,12 +19,11 @@ def model_choice(name):
     elif name == "mobilenet_v2":
         model = torchvision.models.mobilenet_v2(pretrained=True)
         num_classes = 10
-        model.classifier[1] = torch.nn.Linear(1280, num_classes)
-
-        
+        model.classifier[1] = torch.nn.Linear(1280, num_classes)        
     else: 
         raise NameError("unknown model name in config file")
     return model
+
 
 def loss_fn_choice(name):
     if name =="cross_entropy":

@@ -4,12 +4,11 @@
 import argparse
 import datetime
 
-import numpy as np
 import os
 import torch
 import torchvision
 import json
-import wandb
+#import wandb
 import pandas as pd
 from tqdm import tqdm
 
@@ -192,7 +191,10 @@ def main(args):
             
             # save model with timestamp
             d = datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+            
             savename =  os.path.join(savedir_path, "epoch" + str(total_epochs)+ "_" + d)
+            if args.load:
+                savename =  os.path.join(savedir_path, os.path.split(args.load)[-1]+"_retrained_epoch" + str(total_epochs)+ "_" + d)
             
             
             torch.save({
